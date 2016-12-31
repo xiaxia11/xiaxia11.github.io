@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link href="css/jd.css" rel="stylesheet">
+		<script src="js/html5shiv.min.js"></script>
+		<title></title>
+		<!--适配rem  像素比-->
+		<script>
+			!function() {
+				var scale = 1;
+				var ratio = window.devicePixelRatio;
+				scale = scale / window.devicePixelRatio;
+				var meta = document.createElement("meta");
+				meta.setAttribute("name","viewport");
+				meta.setAttribute("content","width=device-width,initial-scale = "+scale+",minimum-scale = "+scale+", maximum-scale = "+scale+", user-scalable = no");
+				document.head.appendChild(meta);
+			}();
+		</script>
+		<!--分成份数   苹果手机640px-->
+		<script>
+		 	fn();
+			window.addEventListener("resize",fn);
+			function fn() {
+				var html = document.querySelector("html");
+				var width = html.getBoundingClientRect().width;
+				html.style.fontSize = width/16 + "px"; //得出来的结果不能小于12 
+			}
+		</script>
+	</head>
+	<body>
+		<header id="header">
+			<a href="#" class="logo">
+				<span></span>
+			</a>
+			<form class="text">
+				<input type="text" placeholder="8.2腕表品牌每满500减60！"/>
+			</form>
+			<a href="#" class="enter">登录</a>
+		</header>
+		<div id="wrap">
+			<div id="ad">
+				<a href="#""><img src="img/ad.png"></a>
+				<a href="#"><img src="img/img1.png"></a>
+				<a href="#"><img src="img/img2.png"></a>
+				<a href="#"><img src="img/img3.png"></a>
+				<a href="#"><img src="img/img4.png"></a>
+				<a href="#"><img src="img/img5.png"></a>
+				<ul class="list">
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+			<div id="nav">
+				<div class="navT">
+					<a href="#" class="nav1">
+						<mark></mark>
+						<span>京东超市</span>
+					</a>
+					<a href="#" class="nav2">
+						<mark></mark>
+						<span>全球购</span>
+					</a>
+					<a href="#" class="nav3">
+						<mark></mark>
+						<span>充值中心</span>
+					</a>
+					<a href="#" class="nav4">
+						<mark></mark>
+						<span>服装城</span>
+					</a>
+				</div>
+				<div class="navBt">
+					<a href="#" class="nav5">
+						<mark></mark>
+						<span>京东金融</span>
+					</a>
+					<a href="#" class="nav6">
+						<mark></mark>
+						<span>领券</span>
+					</a>
+					<a href="#" class="nav7">
+						<mark></mark>
+						<span>物流查询</span>
+					</a>
+					<a href="#" class="nav8">
+						<mark></mark>
+						<span>我的关注</span>
+					</a>
+				</div>
+			</div>
+			<div id="advert"></div>
+			<div id="palmtop">
+				<div class="palmtopT clearfix">
+					<h3>掌上秒杀</h3>
+					<div class="time">
+					<span>03</span>
+					<mark>:</mark>
+					<span>51</span>
+					<mark>:</mark>
+					<span>13</span>
+					<a href="#" class="more">更多秒杀</a>
+				</div>
+				</div>
+				<div class="palmtopBt clearfix">
+					<a href="#" class="palmtopBt1">
+						<span></span>
+						<strong>￥119</strong>
+						<p>￥139</p>
+					</a>
+					<a href="#" class="palmtopBt2">
+						<span></span>
+						<strong>￥54</strong>
+						<p>￥128</p>
+					</a>
+					<a href="#" class="palmtopBt3">
+						<span></span>
+						<strong>￥209</strong>
+						<p>￥229</p>
+					</a>
+					<a href="#" class="palmtopBt4">
+						<span></span>
+						<strong>￥119</strong>
+						<p>￥139</p>
+					</a>
+					<a href="#" class="palmtopBt1">
+						<span></span>
+						<strong>￥119</strong>
+						<p>￥139</p>
+					</a>
+					<a href="#" class="palmtopBt2">
+						<span></span>
+						<strong>￥54</strong>
+						<p>￥128</p>
+					</a>
+					<a href="#" class="palmtopBt3">
+						<span></span>
+						<strong>￥209</strong>
+						<p>￥229</p>
+					</a>
+					<a href="#" class="palmtopBt4">
+						<span></span>
+						<strong>￥119</strong>
+						<p>￥139</p>
+					</a>
+				</div>
+				</div>
+			<div id="advert2">
+				<a href="#"><span></span></a>
+			</div>
+			<div id="shop">
+				<div class="shopT clearfix">
+					<a href="#" class="shopT1">
+						<span></span>
+					</a>
+					<a href="#" class="shopT2">
+						<span></span>
+					</a>
+					<a href="#" class="shopT3">
+						<span></span>
+					</a>
+				</div>
+				<div class="shopBt">
+					<a href="#" class="shopT4">
+						<span></span>
+					</a>
+					<a href="#" class="shopT5">
+						<span></span>
+					</a>
+				</div>
+			</div>
+			<div id="advert3">
+				<a href="#">
+					<span></span>
+				</a>
+			</div>
+			<div id="market">
+				<h3>特色市场</h3>
+				<div class="market_pic clearfix">
+					<a href="#" class="market_pic1">
+						<span></span>
+					</a>
+					<a href="#" class="market_pic2">
+						<span></span>
+					</a>
+					<a href="#" class="market_pic3">
+						<span></span>
+					</a>
+					<a href="#" class="market_pic4">
+						<span></span>
+					</a>
+					<a href="#" class="market_pic5">
+						<span></span>
+					</a>
+				</div>
+			</div>
+			<div id="advert4">
+				<a href="#">
+					<span></span>
+				</a>
+			</div>
+			<div id="main">
+				<h3>主题市场</h3>
+				<div class="main_pic clearfix">
+					<a href="#" class="main_pic1">
+						<span></span>
+					</a>
+					<a href="#" class="main_pic2">
+						<span></span>
+					</a>
+					<a href="#" class="main_pic3">
+						<span></span>
+					</a>
+					<a href="#" class="main_pic4">
+						<span></span>
+					</a>
+					<a href="#" class="main_pic5">
+						<span></span>
+					</a>
+					<a href="#" class="main_pic6">
+						<span></span>
+					</a>
+					<a href="#" class="main_pic7">
+						<span></span>
+					</a>
+					<a href="#" class="main_pic8">
+						<span></span>
+					</a>
+					<a href="#" class="main_pic9">
+						<span></span>
+					</a>
+					<a href="#" class="main_pic10">
+						<span></span>
+					</a>
+					<a href="#" class="main_pic11">
+						<span></span>
+					</a>
+					<a href="#" class="main_pic12">
+						<span></span>
+					</a>
+				</div>
+			</div>
+			<div id="brand">
+				<h3>品牌推荐</h3>
+				<div class="brand_pic clearfix">
+					<a href="#" class="brand_pic1">
+						<span></span>
+					</a>
+					<a href="#" class="brand_pic2">
+						<span></span>
+					</a>
+					<a href="#" class="brand_pic3">
+						<span></span>
+					</a>
+				</div>
+			</div>
+			<div id="advert5">
+				<a href="#">
+					<span></span>
+				</a>
+			</div>
+			<div id="like">
+				<header class="header cleaerfix">
+					<h3>猜你喜欢</h3>
+					<a href="#">
+						<mark></mark>
+						<span>登陆后更懂你</span>
+					</a>
+				</header>
+				<ul class="like_pic clearfix">
+					<li class="like_pic1">
+						<a href="#">
+							<span></span>
+							<p>圣迪露夏季新款背包牛皮双肩包女女包 双肩包书…</p>
+							<strong>￥ 194.00</strong>
+						</a>
+						<a href="#" class="resemble">看相似</a>
+					</li>
+					<li class="like_pic2">
+						<a href="#">
+							<span></span>
+							<p>3M升级版新车除甲醛汽车除味剂 空气清新剂 车内…</p>
+							<strong>￥ 66.00</strong>
+						</a>
+						<a href="#" class="resemble">看相似</a>
+					</li>
+					<li class="like_pic1">
+						<a href="#">
+							<span></span>
+							<p>圣迪露夏季新款背包牛皮双肩包女女包 双肩包书…</p>
+							<strong>￥ 194.00</strong>
+						</a>
+						<a href="#" class="resemble">看相似</a>
+					</li>
+					<li class="like_pic2">
+						<a href="#">
+							<span></span>
+							<p>3M升级版新车除甲醛汽车除味剂 空气清新剂 车内…</p>
+							<strong>￥ 66.00</strong>
+						</a>
+						<a href="#" class="resemble">看相似</a>
+					</li>
+					<li class="like_pic1">
+						<a href="#">
+							<span></span>
+							<p>圣迪露夏季新款背包牛皮双肩包女女包 双肩包书…</p>
+							<strong>￥ 194.00</strong>
+						</a>
+						<a href="#" class="resemble">看相似</a>
+					</li>
+					<li class="like_pic2">
+						<a href="#">
+							<span></span>
+							<p>3M升级版新车除甲醛汽车除味剂 空气清新剂 车内…</p>
+							<strong>￥ 66.00</strong>
+						</a>
+						<a href="#" class="resemble">看相似</a>
+					</li>
+				</ul>
+			</div>
+			<div id="enter">
+				<div class="click"><a href="#">点击继续加载</a></div>
+				<ul class="enter1">
+					<li><a href="#" class="enter_1">登录</a><span>|</span></li>
+					<li><a href="#">注册</a><span>|</span></li>
+					<li><a href="#">反馈</a><span>|</span></li>
+					<li><a href="#">回到顶部</a></li>
+				</ul>
+				<ul class="enter2">
+					<li>
+						<a href="#" class="enter2_1">
+							<span></span>
+							<mark>客户端</mark>
+						</a>
+					</li>
+					<li>
+						<a href="#" class="enter2_2">
+							<span></span>
+							<mark>触屏版</mark>
+						</a>
+					</li>
+					<li>
+						<a href="#" class="enter2_3">
+							<span></span>
+							<mark>电脑版</mark>
+						</a>
+					</li>
+				</ul>
+				<div class="enter3">
+					<span> Copyright © 2004-2016 京东JD.com 版权所有</span>
+				</div>
+			</div>
+		</div>
+		<footer id="footer">
+			<a href="#" class="footer1 active">
+				<mark></mark>
+				<span>首页</span>
+			</a>
+			<a href="#" class="footer2">
+				<mark></mark>
+				<span>分类</span>
+			</a>
+			<a href="#" class="footer3">
+				<mark></mark>
+				<span>购物车</span>
+			</a>
+			<a href="#" class="footer4">
+				<mark></mark>
+				<span>我的</span>
+			</a>
+		</footer>
+	</body>
+</html>
+<script src="js/jd.js"></script>

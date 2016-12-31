@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		body {
+			margin: 0;
+			background: #f1f1f1;
+		}
+		#snake {
+			width: 800px;
+			border: 2px salmon solid;
+			
+		}
+		.info {
+			height: 60px;
+			border-bottom: 2px solid salmon;
+			text-align: center;
+			font: bold 28px/60px "宋体";
+		}
+		#map {
+			border-bottom: 2px solid salmon;
+		}
+		#map table {
+			margin: 0 auto;
+			border: 1px salmon solid;
+			border-bottom: none;
+		}
+		#map td {
+			width: 22px;
+			height: 22px;
+			border-bottom: 1px solid sandybrown;
+			border-right: 1px solid sandybrown;
+			background: #fff;
+		}
+		
+		/*定义蛇和样式 刹车*/
+		
+		#map table td.snake {
+			background: greenyellow;
+		}
+		#map table td.food {
+			background: pink;
+		}
+		/*障碍物*/
+		#map table td.block {
+			background: yellow;
+		}
+		/*滑板*/
+		#map table td.skate {
+			background: blue;
+		}
+		/*减速*/
+		#map table td.break {
+			background: red;
+		}
+		
+		/**/
+		.help {
+			height: 70px;
+			display: flex;
+			/*border-bottom: 2px solid salmon;*/
+		}
+		.left {
+			width: 75%;
+			display: flex;
+			border-right: 1px solid salmon;
+			justify-content: space-around;
+			align-content: center;
+		}
+		.right {
+			flex: 1;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.left div {
+			height: 50px;
+			display: flex;
+			align-items: center;
+		}
+		.left div span {
+			width: 22px;
+			height: 22px;
+			display: inline-block;
+			border: 1px solid #000;
+			background: blue;
+			margin-right: 5px;
+		}
+		/*#btn {
+			width: 80px;
+			height: 30px;
+			background: #f1f1f1;
+			border: 2px salmon solid;
+			font: 14px/28px "微软雅黑";
+			text-align: center;
+			border-radius: 10px;
+			margin: 0 auto;
+		}*/
+	</style>
+</head>
+<body>
+<div  id="snake">
+	<div class="info">贪吃蛇</div>
+	<div id="map">
+		<!--<table cellpadding="0" cellspacing="0">
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>-->
+	</div>
+	<div class="help">
+		<div class="left">
+			<div><span></span>蓝瘦</div>
+			<div><span></span>香菇</div>
+			<div id="start"><span></span>神器</div>
+			<div><span></span>千万别吃</div>
+		</div>
+		<div class="right">
+			<span>战绩：<i id="score">0</i>分</span>
+		</div>
+	</div>
+	<!--<div id="btn">开始游戏</div>-->
+</div>
+<script>
+//给那几个span设置不一样的颜色
+(function(){
+	var color = ["pink","yellow","blue","red"];
+	
+	var spans = document.querySelectorAll(".left span");
+	 
+	 var spans= [...spans];
+	 spans.forEach((item,i)=>{
+	 	item.style.background = color[i];
+	 });
+})()
+</script>
+</body>
+</html>
+<script>
+	window.onload = function(){
+		//----------------------------初始化变量函数
+		var mapX = 20; var mapY = 20;//单元格列数和行数
+		var snakeData = createArr(mapX,mapY);
+		//console.log(snakeData)
+		var mapData = createArr(mapX,mapY);//虚拟的碰撞检测
+		
+		//初始化蛇的属性
+		var snake = [];//[[x,y],[x1,y1],[x2,y2]]
+		var len = 3;//蛇的长度
+		var speed = 10;//速度
+		
+		var snakeTimer = null;
+		var skateTimer = [];
+		var breakTimer = [];//存储定时器  设置障碍和滑板
+		var direction = 39;//键值 控制方向
+		
+		var flag = true;//解决快速掉头 断裂
+		
+		var score = document.getElementById("score");
+		var startGame =document.getElementById("start");
+		//-------------------------初始化部分
+		create(mapX,mapY);//生成地图
+		
+		startGame.onclick = start;
+		
+		function start(){
+			this.onclick = null;
+			clear();
+			initSnake();//初始化蛇
+			addObj("food");//初始化实物
+			addToy();
+			walk();
+		}
+		
+		//var p = scope();
+		//snakeData[p[1]][p[2]].className = "food";
+		
+		//addObj("block");//障碍物
+		//--------------------------需求函数化部分
+		//需求1： 生成地图
+		function create(x,y){
+			var map = document.getElementById("map");
+			var table = document.createElement("table");
+			table.cellPadding = table.cellSpacing = 0;
+			var tbody = table.createTBody();
+			//创建所有的tr
+			
+			for(var i = 0; i < x; i++){//生成的是行
+				var tr = document.createElement("tr"); 
+				for(var j = 0; j < y; j++){
+					var td = document.createElement("td");//生成是列
+					snakeData[i][j] = tr.appendChild(td);
+					
+				}
+				tbody.appendChild(tr);
+			}
+			table.appendChild(tbody);
+			map.appendChild(table);
+		}
+		//需求2：创建二维数组
+		
+		function createArr(x,y){
+			var arr = new Array(x);//创建二维数组中的空数组
+			for(var i = 0; i < x; i++){
+				arr[i] = new Array(y);
+			}
+			return arr;
+		}
+		
+		//需求3：设定范围
+		function scope(startX,startY,endX,endY){
+			startX = startX || 0;//如果不设置  那就让他值为0
+			startY = startY || 0;
+			endX = endX || mapX -1;
+			endY = endY || mapY -1;
+			var p = [],//p是个空数组  用来存储坐标
+				x = rP([startX,endX]),//把随机的值存储到数组中
+				y = rP([startY,endY]);
+			p.push(x,y);
+			
+			//坑坑
+			//用来判断这个点生成的位置是否有物品，如果有那就重复执行上边的代码
+			if(mapData[x][y]){
+				return scope(startX,startY,endX,endY);
+			}
+			return p;
+				
+		}
+		
+		//需求4： 编写随机函数
+		function rP(arr){
+			var max = Math.max.apply(null,arr);
+			var min = Math.min.apply(null,arr);
+			return Math.round(Math.random() * (max - min) +min);
+		}
+		
+		//需求5：初始化蛇
+		function initSnake(){
+			//找到一个随机的点  但是这个店必须符合执行的范围  不能撞墙 也不能截取
+			var p = scope(0,2,mapX-1,parseInt(mapY/2));//横着是y  竖着是x
+			for(var i = 0; i < len; i++){
+				var x = p[0],//某一行
+					y = p[1] - i;//某一行中  挨着的  3个td
+					snake.push([x,y]);//放到蛇的数组中，这样这个数组就存了3个挨着的点
+					snakeData[x][y].className = "snake";//绘制蛇
+					mapData[x][y] = "snake";//在数组层面注册社的数据
+			}
+		}
+		
+		//需求6:让蛇走起来
+		
+		function walk(){
+			clearInterval(snakeTimer);
+			snakeTimer = setInterval(step,5000/speed)
+		};
+		
+		//需求7：控制蛇的运动
+		function step(){
+			var headX = snake[0][0],
+				headY = snake[0][1];
+			//console.log(headX,headY)
+			switch(direction){
+				case 37:
+					headY -= 1;//蛇头向左减1
+					break;
+				case 38:
+					headX -= 1;
+					break;
+				case 39:
+					headY += 1;
+					break;
+				case 40:
+					headX += 1;
+			}
+			if(headX < 0 || headX > mapX -1 || headY < 0 || headY > mapY -1 || mapData[headX][headY] == "snake" || mapData[headX][headY] == "block"  ){
+				clearInterval(snakeTimer);
+				skateTimer.forEach((item,i) =>{
+					clearTimeout(item);
+				})
+				breakTimer.forEach((item,i) =>{
+					clearTimeout(item);
+				})
+				alert("您输了");
+				startGame.onclick = start;
+				return;
+			}
+			//判断蛇的长度
+			
+			if(len%4 == 0 && len < 55 && mapData[headX][headY] == "food"){
+				speed +=5;
+				walk();
+			}
+			//console.log(len,speed)
+			
+			//添加障碍
+			if(len%9 == 0 && len < 60 && mapData[headX][headY] == "food"){
+				addObj("block");
+			}
+			
+			//判断滑板加速
+			if(mapData[headX][headY] == "skate"){
+				speed += 15;
+				walk();
+			}
+			//判断刹车 
+			if(mapData[headX][headY] == "break"){
+				speed = 10;
+				walk();
+			}
+			//吃东西
+			if(mapData[headX][headY] == "food"){
+				addObj("food");
+				mapData[headX][headY] = true;
+			}
+			
+			//去蛇尾
+			if(!mapData[headX][headY]){
+				var lastX = snake[snake.length-1][0];
+				var	lastY = snake[snake.length-1][1];
+				
+				snakeData[lastX][lastY].className = "";
+				snake.pop();
+				//mapData[headX][headY] = "";
+				mapData[lastX][lastY] = false;//空和false 都可以  最好统一一下数据格式
+			}
+			//添加蛇头
+			snake.unshift([headX,headY]);
+			snakeData[headX][headY].className = "snake";
+			mapData[headX][headY] = "snake";
+			len = snake.length;
+			
+			score.innerHTML = (len-3)*10;
+			flag = true;
+		}
+		
+//		document.onkeydown = function(e){
+//			var e = e || window.event;//兼容
+//			if(e.keyCode > 36 && e.keyCode < 41){
+//				direction = e.keyCode;
+//			}
+//		};
+		//需求8： 控制方向
+		document.onkeydown = function(e){
+			var e = e || window.event;//兼容
+			
+			if(!flag){
+				return;
+			}
+			if(e.keyCode > 36 && e.keyCode < 41 && Math.abs(e.keyCode - direction) != 2){
+				direction = e.keyCode;
+			}
+			//console.log(direction);
+			flag = false;
+			return false;
+		};
+		//onkeydown的时候可以开一个延迟定时器  让speed+= 一个值  重复执行walk 并且需要记录一下那个之前运动的速度  onkeyup清空定时器
+		// && Math.abs(e.keyCode - direction) != 2
+		
+		//需求9： 添加随机物品
+		function addObj(name){
+			var p = scope();//整个地图随机的一个点
+			snakeData[p[0]][p[1]].className = name;
+			mapData[p[0]][p[1]] = name;
+		}
+		
+		//需求10：添加随机数量的滑板和刹车
+		function addToy(){
+			var skateNum = rP([6,10]);
+			var breakNum = rP([4,6]);
+			
+			for(var i =0; i < skateNum; i++){
+				skateTimer.push(setTimeout(function(){
+					addObj("skate");
+				},rP([8000,120000])))
+			}
+			
+			for(var i =0; i < breakNum; i++){
+				breakTimer.push(setTimeout(function(){
+					addObj("break");
+				},rP([10000,160000])))
+			}
+		}
+		//需求11： 清除地图
+		function clear(){
+			snakeData.forEach((item,i) =>{
+				item.forEach((item,i) =>{
+					item.className ="";
+				})
+			})
+			snake = [];
+			direction = 39;
+			len = 3;
+			mapData = createArr(mapX,mapY);
+			speed = 10;
+			score.innerHTML = 0;
+		}
+	};
+</script>
