@@ -178,7 +178,6 @@ window.onload = function(){
 			}
 		}
 		function textUp(n){
-			//aContro[num].aH3 = aContro[num].getElementsByTagName("h3");
 			var i =0;
 			toUp();
 			function toUp(){
@@ -206,10 +205,6 @@ window.onload = function(){
 			aContro[num].style.display = "block";
 			aH1[num].style.display = "block";
 			titleDown(num);
-			// aContro[num].htimer = setTimeout(function(){
-			// 	titleDown(num);
-				
-			// },800);
 			aContro[num].aH3 = aContro[num].getElementsByTagName("h3");
 			pshow(num)
 			textUp(num)
