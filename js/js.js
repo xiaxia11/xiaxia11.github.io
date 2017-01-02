@@ -6,15 +6,8 @@ window.onload = function(){
 			{"webkitTransform":"matrix(0.6,0,0,0.6,-240,0)","zIndex":"98"},
 			{"webkitTransform":"matrix(0.4,0,0,0.4,-360,0)","zIndex":"97"},
 			{"webkitTransform":"matrix(0.28,0,0,0.28,-420,0)","zIndex":"96"},
-			//{"webkitTransform":"matrix(0.2,0,0,0.2,-446,0)","zIndex":"95"}
 		]
 		var jsontemp = {"webkitTransform":"matrix(1.1,0,0,1.1,100,0)","opacity":0}
-
-		//scale(1.0,1.0) translate(-0px,0px)
-		//scale(0.6,0.6) translate(-400px,0px)
-		//scale(0.4,0.4) translate(-900px,0px)
-		//scale(0.28,0.28) translate(-1500px,0px)
-		//scale(0.2,0.2) translate(-2300px,0px)
 
 
 		
@@ -41,16 +34,7 @@ window.onload = function(){
 				aDiv[num].getElementsByTagName("img")[0].src = arrImgSrc[num];
 			}
 		}
-			// window.onmousemove = function(ev){
-			// 	var ev = ev || event;
-			// 	var disX = ev.clientX;
-			// 	var clientW =document.documentElement.clientWidth;
-			// 	var rotateY = (1-disX/clientW)*45;
-			// 	logoimg.style.webkitTransform ="translateZ(180px) rotateY(" + rotateY + "deg)";
-			// }
-		
-		
-		// }
+			
 		var autoGo = setInterval(go,7000)
 		function go(){
 			toNext(1);
