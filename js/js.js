@@ -268,10 +268,7 @@ window.onload = function(){
 				out.style.display = "block"
 				oShade.style.display = "block";
 				aPop[this.index].style.visibility = "visible";
-				// aPop[this.index].style.left = document.documentElement.clientWidth/2-aPop[this.index].offsetWidth/2 + "px";
-				// aPop[this.index].style.top = document.documentElement.clientHeight/2-aPop[this.index].offsetHeight/2 + "px";
-				//doMove(oShade,{"opacity":50},1000,"linear")
-				//doMove(aPop[this.index],{"top":100},1000,"backOut")
+	
 				setTimeout(function(){
 					oShade.style.opacity = 1
 					aPop[_this.index].style.top = "100px";
