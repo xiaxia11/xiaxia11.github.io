@@ -282,17 +282,6 @@ window.onload = function(){
 		//隐藏pop
 		toHidden0.onclick =toHidden1.onclick = toHidden2.onclick =  function(){
 			var _this = this;
-			
-			
-			// aPop[this.index].style.webkitTransition = "2s";
-			// aPop[this.index].style.webkitTransform = "rotate(45deg) skew(10deg,10deg)";
-			// aPop[this.index].style.top = "-1000px";
-			// aPop[this.index].style.left = "1000px";
-			// aPop[this.index].style.width = "";
-			// aPop[this.index].style.opacity = 0.1;
-			
-			
-			
 
 			aPop[this.index].style.webkitTransform = "";
 			aPop[this.index].style.top = document.documentElement.clientHeight +100+ "px";
@@ -305,18 +294,6 @@ window.onload = function(){
 				oShade.style.display = "none";
 
 			},1000)
-			// var timer = setTimeout(function(){
-				
-
-			// 	aPop[_this.index].style.display = "none";
-			// 	aPop[_this.index].style.webkitTransition = "";
-			// 	aPop[_this.index].style.webkitTransform = "";
-			// 	aPop[_this.index].style.top = "";
-			// 	aPop[_this.index].style.left = "";
-			// 	aPop[_this.index].style.width = "";
-			// 	aPop[_this.index].style.opacity = "";
-			// 	out.style.display = "none"
-			// },1000)
 		}
 	/*
 		角度和弧度关系是：
@@ -368,15 +345,10 @@ window.onload = function(){
 	function goOut(){
 		doMove(aList[0],arrp[5],100,"easeIn",function(){doMove(aList[0],arrp[4],100,"easeIn",function(){doMove(aList[0],arrp[0],300,"backOut")})})
 	
-		//doMove(aList[1],arr[5],100,"easeIn",function(){doMove(aList[1],arr[4],100,"easeIn",function(){doMove(aList[1],arr[1],300,"backOut",function(){doMove(aMP[1],{"top":30,"opacity":100},300,"linear")})})})
-	
 		doMove(aList[1],arrp[5],100,"easeIn",function(){doMove(aList[1],arrp[4],100,"easeIn",function(){doMove(aList[1],arrp[2],300,"backOut")})})
-	
-		//doMove(aList[3],arr[5],100,"easeIn",function(){doMove(aList[3],arr[4],100,"easeIn",function(){doMove(aList[3],arr[3],300,"backOut",function(){doMove(aMP[3],{"top":30,"opacity":100},300,"linear")})})})
-	
+
 		doMove(aList[2],arrp[5],100,"easeIn",function(){doMove(aList[2],arrp[4],100,"easeIn",function(){doMove(aList[2],arrp[4],300,"backOut")})})
 	
-		//doMove(aList[5],arr[5],100,"easeIn",function(){doMove(aList[5],arr[5],100,"easeIn",function(){doMove(aList[5],arr[5],300,"backOut",function(){doMove(aMP[5],{"top":30,"opacity":100},300,"linear")})})})
 	}
 	for(var i = 0;i<aMP.length;i++){
 		aList[i].onmouseover = function(){
