@@ -111,8 +111,7 @@ $(".nav_service .item").click(function(){
 		run2(0);
 	}
 });
-
-//移动端左右两边的图片转动
+// 介绍文字的转动
 function run(delta){	
 	onOff = false;
 	clearTimeout(sto);
@@ -153,7 +152,7 @@ function run(delta){
 		animates(idx);
 		setTimeout(function(){	
 			onOff = true;
-		},10000);
+		},1000);
 		sto=setTimeout(function(){sw=1;},1000);
 	});
 	changeNav($(".nav_service .item").eq(idx));
@@ -162,7 +161,8 @@ function run(delta){
 	
 }
 
-//转动2
+//
+//移动端左右两边的图片转动
 function run2(delta){	
 	if(delta<0){
 		$(".banner .d.now").transition({rotate:180},1200,'cubic-bezier(0.5,0,0.2,1)',function(){
@@ -233,12 +233,13 @@ var obj1=document.getElementById("service");
 var start,end="";
 var h=$(window).height();
 obj1.addEventListener('touchstart',function(event){
+	onOff = true;
 	if(sw==1){
 		touch = event.targetTouches[0];
 		y0=touch.screenY;
 		start=touch.screenY;
-		//fl=f.scrollLeft();
 	}
+	onOff = false;
 },false);
 obj1.addEventListener('touchmove',function(event){
 	if(sw==1){
@@ -246,6 +247,7 @@ obj1.addEventListener('touchmove',function(event){
 		$(".service .d.now").css({rotate:(touch.screenY-y0)*-0.1});
 		end=touch.screenY;		
 	}
+	onOff = false;
 	event.preventDefault();//阻止浏览器默认事件
 },false);
 obj1.addEventListener('touchend',function(event){
