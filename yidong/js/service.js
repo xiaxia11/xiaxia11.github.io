@@ -3,6 +3,9 @@ var idx = 0,
 idx1 = 0,
 idx2 = 0;
 var onOff = true;
+document.addEventListener('touchstart', function(ev){
+	ev.preventDefault()
+})
 $(function(){
 	$(".service .left .d:eq("+idx+")").css({rotate:0}).addClass("now");
 	$(".service .right .d.d:eq("+idx+")").css({rotate:0}).addClass("now");
