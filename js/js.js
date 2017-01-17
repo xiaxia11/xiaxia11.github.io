@@ -11,7 +11,7 @@ window.onload = function(){
 
 
 		
-		var arrImgSrc = ["img/1.png","img/2.png","img/3.png","img/4.png","img/5.png","img/6.png","img/7.png"]
+		var arrImgSrc = ["img/11.png","img/1.png","img/2.png","img/3.png","img/4.png","img/5.png","img/6.png","img/7.png"]
 		var aDiv = document.getElementsByClassName("outer");
 		var aDivIn = document.getElementsByClassName("inner");
 		var oNav = document.getElementsByTagName("nav")[0];
