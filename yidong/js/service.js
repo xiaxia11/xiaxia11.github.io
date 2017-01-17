@@ -249,6 +249,7 @@ obj1.addEventListener('touchstart',function(event){
 		start=touch.screenY;
 	}
 	onOff = false;
+	event.preventDefault();//阻止浏览器默认事件
 },false);
 obj1.addEventListener('touchmove',function(event){
 	
@@ -287,6 +288,7 @@ obj1.addEventListener('touchend',function(event){
 		}
 		end="";
 	}
+	event.preventDefault();//阻止浏览器默认事件
 },false);
 
 
