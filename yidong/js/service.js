@@ -2,7 +2,7 @@ $(function(){
 var idx = 0,
 idx1 = 0,
 idx2 = 0;
-var onOff = false;
+var onOff = true;
 $(function(){
 	$(".service .left .d:eq("+idx+")").css({rotate:0}).addClass("now");
 	$(".service .right .d.d:eq("+idx+")").css({rotate:0}).addClass("now");
@@ -111,13 +111,15 @@ $(".nav_service .item").click(function(){
 		run2(0);
 	}
 });
+var flag = true;
 // 介绍文字的转动
 function run(delta){	
-	onOff = false;
+	flag = false;
 	clearTimeout(sto);
 	if(delta<0){
 		$(".service .d.now").transition({rotate:180},1200,'cubic-bezier(0.5,0,0.2,1)',function(){
 			hidett($(this).find(".box1"));
+			flag = true;
 			$(this).removeClass("now");
 		});
 		
@@ -128,6 +130,7 @@ function run(delta){
 	} else if (delta>0){
 		$(".service .d.now").transition({rotate:-180},1200,'cubic-bezier(0.5,0,0.2,1)',function(){
 			hidett($(this).find(".box1"));
+			flag = true;
 			$(this).removeClass("now");
 		});
 		
@@ -138,6 +141,7 @@ function run(delta){
 	} else {
 		$(".service .d.now").transition({rotate:180},1200,'cubic-bezier(0.5,0,0.2,1)',function(){
 			$(this).removeClass("now");
+			flag = true;
 		});
 		$(".service .left .d:eq("+idx+"),.service .right .d:eq("+idx+")").css({rotate:-180});
 	}
@@ -150,9 +154,6 @@ function run(delta){
 		
 		//执行动画
 		animates(idx);
-		setTimeout(function(){	
-			onOff = true;
-		},1000);
 		sto=setTimeout(function(){sw=1;},1000);
 	});
 	changeNav($(".nav_service .item").eq(idx));
@@ -161,11 +162,15 @@ function run(delta){
 	
 }
 
-//
+var flagA = true;
 //移动端左右两边的图片转动
 function run2(delta){	
+	if(!flagA) return;
+	
+	flagA = false;
 	if(delta<0){
 		$(".banner .d.now").transition({rotate:180},1200,'cubic-bezier(0.5,0,0.2,1)',function(){
+			flagA = true;
 			$(this).removeClass("now");
 		});		
 		
@@ -177,6 +182,7 @@ function run2(delta){
 	}
 	else if(delta>0){
 		$(".banner .d.now").transition({rotate:-180},1200,'cubic-bezier(0.5,0,0.2,1)',function(){
+			flagA = true;
 			$(this).removeClass("now");
 		});
 		
@@ -188,6 +194,7 @@ function run2(delta){
 	}
 	else{
 		$(".banner .d.now").transition({rotate:180},1200,'cubic-bezier(0.5,0,0.2,1)',function(){
+			flagA = true;
 			$(this).removeClass("now");
 		});
 		$(".banner .left .d:eq("+idx1+"),.banner .right .d:eq("+idx1+")").css({rotate:-180});
@@ -233,6 +240,8 @@ var obj1=document.getElementById("service");
 var start,end="";
 var h=$(window).height();
 obj1.addEventListener('touchstart',function(event){
+	
+	if(!flag) return;
 	onOff = true;
 	if(sw==1){
 		touch = event.targetTouches[0];
@@ -242,6 +251,8 @@ obj1.addEventListener('touchstart',function(event){
 	onOff = false;
 },false);
 obj1.addEventListener('touchmove',function(event){
+	
+	if(!flag) return;
 	if(sw==1){
 		touch = event.targetTouches[0];
 		$(".service .d.now").css({rotate:(touch.screenY-y0)*-0.1});
@@ -251,12 +262,14 @@ obj1.addEventListener('touchmove',function(event){
 	event.preventDefault();//阻止浏览器默认事件
 },false);
 obj1.addEventListener('touchend',function(event){
+	
 	if(sw==1 && end!=""){
 		if(end-start<h*-0.2){
 			idx++;
 			idx1++;
 			idx2++;
 			if(idx2==bg.length){idx2=0;}
+			if(!flag) return;
 			run(-1);
 			run2(-1);
 		}else if(end-start>h*0.2){
@@ -264,6 +277,7 @@ obj1.addEventListener('touchend',function(event){
 			idx1--;
 			idx2--;
 			if(idx2<0){idx2=bg.length-1;}
+			if(!flag) return;
 			run(1);
 			run2(1);
 		}
