@@ -284,6 +284,7 @@ nav input {
 	left: 18px;
 	background: #EB2D2F url(img/link.png) center no-repeat;
 	-webkit-transform: matrix(0,0,0,0,0,0);
+	cursor: pointer;
 }
 
 .contro a:hover {

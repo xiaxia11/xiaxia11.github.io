@@ -337,6 +337,7 @@ window.onload = function(){
 	];
 	//不是圆弧轨迹
 	//圆弧轨迹应该是sin(acos(b))
+	//alert(oPhone)
 	var oPhone = document.getElementById("phone");
 	var aMP= oPhone.getElementsByClassName("word");
 	var aList = oPhone.getElementsByTagName("div");
