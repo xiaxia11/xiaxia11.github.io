@@ -243,58 +243,58 @@ window.onload = function(){
 		
 
 		
-		var toHidden0 = document.getElementsByClassName("tohidden")[0];
-		var toHidden1 = document.getElementsByClassName("tohidden")[1];
-		var toHidden2 = document.getElementsByClassName("tohidden")[2];
-		toHidden0.index = 0;
-		toHidden1.index = 1;
-		toHidden2.index = 2;
-		var out = document.getElementsByClassName("out")[0];
-		var aPop = document.getElementsByClassName("pop");
-		var oShade = document.getElementById("shade");
-		var oPopbg = document.getElementsByClassName("popbg")[0];
-		
-		//点击拉下三个pop层
-		for(var i = 0;i<aInp.length;i++){
-			aInp[i].index = i;
-			aPop[i].style.left = document.documentElement.clientWidth/2-330 + "px";
-			aPop[i].style.top = document.documentElement.clientHeight +100+ "px";
-			aInp[i].onclick = function(){
-				var _this = this;
-				aPop[this.index].style.left = document.documentElement.clientWidth/2-330 + "px";
-				aPop[this.index].style.top = document.documentElement.clientHeight +100+ "px";
-				oPopbg.style.left = document.documentElement.clientWidth/2-330 + "px";
-				oPopbg.style.top = document.documentElement.clientHeight +100+ "px";
-				out.style.display = "block"
-				oShade.style.display = "block";
-				aPop[this.index].style.visibility = "visible";
-	
-				setTimeout(function(){
-					oShade.style.opacity = 1
-					aPop[_this.index].style.top = "100px";
-					aPop[_this.index].style.webkitTransform = "translateZ(480px) rotate(0deg)  scale(0.65,0.65)";
-					oPopbg.style.top = "100px";
-					oPopbg.style.opacity = "1";
-					oPopbg.style.webkitTransform = "translateZ(480px) rotate(0deg) rotateX(0deg) rotateY(0deg) scale(0.65,0.65)";
-				},30)
-			}
-		}
-		//隐藏pop
-		toHidden0.onclick =toHidden1.onclick = toHidden2.onclick =  function(){
-			var _this = this;
-
-			aPop[this.index].style.webkitTransform = "";
-			aPop[this.index].style.top = document.documentElement.clientHeight +100+ "px";
-			oPopbg.style.top = document.documentElement.clientHeight +100+ "px";
-			oPopbg.style.opacity = "0";
-			oPopbg.style.webkitTransform = "";
-			oShade.style.opacity = 0;
-			var timer = setTimeout(function(){
-				out.style.display = "none"
-				oShade.style.display = "none";
-
-			},1000)
-		}
+//		var toHidden0 = document.getElementsByClassName("tohidden")[0];
+//		var toHidden1 = document.getElementsByClassName("tohidden")[1];
+//		var toHidden2 = document.getElementsByClassName("tohidden")[2];
+//		toHidden0.index = 0;
+//		toHidden1.index = 1;
+//		toHidden2.index = 2;
+//		var out = document.getElementsByClassName("out")[0];
+//		var aPop = document.getElementsByClassName("pop");
+//		var oShade = document.getElementById("shade");
+//		var oPopbg = document.getElementsByClassName("popbg")[0];
+//		
+//		//点击拉下三个pop层
+//		for(var i = 0;i<aInp.length;i++){
+//			aInp[i].index = i;
+//			aPop[i].style.left = document.documentElement.clientWidth/2-330 + "px";
+//			aPop[i].style.top = document.documentElement.clientHeight +100+ "px";
+//			aInp[i].onclick = function(){
+//				var _this = this;
+//				aPop[this.index].style.left = document.documentElement.clientWidth/2-330 + "px";
+//				aPop[this.index].style.top = document.documentElement.clientHeight +100+ "px";
+//				oPopbg.style.left = document.documentElement.clientWidth/2-330 + "px";
+//				oPopbg.style.top = document.documentElement.clientHeight +100+ "px";
+//				out.style.display = "block"
+//				oShade.style.display = "block";
+//				aPop[this.index].style.visibility = "visible";
+//	
+//				setTimeout(function(){
+//					oShade.style.opacity = 1
+//					aPop[_this.index].style.top = "100px";
+//					aPop[_this.index].style.webkitTransform = "translateZ(480px) rotate(0deg)  scale(0.65,0.65)";
+//					oPopbg.style.top = "100px";
+//					oPopbg.style.opacity = "1";
+//					oPopbg.style.webkitTransform = "translateZ(480px) rotate(0deg) rotateX(0deg) rotateY(0deg) scale(0.65,0.65)";
+//				},30)
+//			}
+//		}
+//		//隐藏pop
+//		toHidden0.onclick =toHidden1.onclick = toHidden2.onclick =  function(){
+//			var _this = this;
+//
+//			aPop[this.index].style.webkitTransform = "";
+//			aPop[this.index].style.top = document.documentElement.clientHeight +100+ "px";
+//			oPopbg.style.top = document.documentElement.clientHeight +100+ "px";
+//			oPopbg.style.opacity = "0";
+//			oPopbg.style.webkitTransform = "";
+//			oShade.style.opacity = 0;
+//			var timer = setTimeout(function(){
+//				out.style.display = "none"
+//				oShade.style.display = "none";
+//
+//			},1000)
+//		}
 	/*
 		角度和弧度关系是：
 			2π弧度=360°。从而1°≈0.0174533弧度，1弧度≈57.29578°。
